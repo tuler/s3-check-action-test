@@ -20,7 +20,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     - run: echo "Do your thing"
-      if: steps.check.outputs.exists
+      if: steps.check.outputs.exists!
       
     - run: echo "Write a file to S3 bucket with name GITHUB_SHA"
-      if: steps.check.outputs.exists
+      if: steps.check.outputs.exists!
