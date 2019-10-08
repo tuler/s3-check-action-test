@@ -21,6 +21,17 @@ jobs:
 
     - run: echo "Do your thing"
       if: steps.check.outputs.exists == 'false'
-      
-    - run: echo "Write a file to S3 bucket with name GITHUB_SHA"
+    
+    - name: Create build result
+      run: touch $GITHUB_SHA
+      if: steps.check.outputs.exists == 'false'
+
+    - name: Copy file to S3
+      uses: tpaschalis/s3-sync-action@master
+      env:
+        FILE: ./${{ github.sha }}
+        AWS_REGION: 'us-east-1'
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_SECRET }}        
       if: steps.check.outputs.exists == 'false'
