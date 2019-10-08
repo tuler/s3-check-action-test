@@ -12,7 +12,7 @@ jobs:
     - uses: tuler/s3-check-action@master
       id: check
       with:
-        key: ${GITHUB_SHA}
+        key: "044c3c20ee219f0812ef3dbe192ae82bbf3e43cc"
       env:
         AWS_REGION: 'us-east-1'
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
