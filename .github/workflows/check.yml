@@ -9,7 +9,7 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/s3-check-action
+    - uses: tuler/s3-check-action@master
       id: check
       with:
         key: ${GITHUB_SHA}
